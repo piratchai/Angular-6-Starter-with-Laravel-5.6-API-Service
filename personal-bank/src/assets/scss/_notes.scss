@@ -1,0 +1,31 @@
+.notes{
+    padding: 11px;
+    margin: 2px;
+   
+    &.notes-danger {
+        border-left: $border_3px solid $color_red !important;
+        h1,h2,h3,h4,h5{
+            color: $color_red;
+        }
+    }
+
+    &.notes-warning{
+        border-left: $border_3px solid $color_yellow !important;
+        h1,h2,h3,h4,h5{
+            color: $color_yellow;
+        }
+    } 
+
+    &.notes-success{
+        border-left: $border_3px solid $color_green !important;
+        h1,h2,h3,h4,h5{
+            color: $color_green;
+        }
+    }
+    &.notes-info{
+        border-left: $border_3px solid $color_blue !important;
+        h1,h2,h3,h4,h5{
+            color: $color_blue;
+        }
+    }    
+}

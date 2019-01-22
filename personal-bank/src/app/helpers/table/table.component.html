@@ -1,0 +1,53 @@
+<div style="position: relative;">
+    <div *ngIf="loading " class="loader absolute"></div>      
+    <table class="{{classTable}}">
+        <thead class="{{classHead}}">
+            <tr>
+                <th scope="{{scopeTh}}" *ngFor="let head of header"> {{head.title}} </th>
+            </tr>
+        </thead>
+        <tbody *ngIf="data && data.length > 0;else noResults">
+            <tr (dblclick)="onDoubleClick($event,d.id)" class="{{addClassSelected(d.id)}}" (click)="handleClickTr($event,d)" *ngFor="let d of data">
+                <td scope={{scopeTr}}  *ngFor="let td of header"  >
+                    <span   *ngIf="td.tdTag && td.tdTag=='span'"  class="{{convertTdClass( td.tdTagClass , d[td.row],td.row) }}">{{convert(d[td.row],td.row)}}</span>
+                    <div    *ngIf="td.tdTag && td.tdTag=='div'"   class="{{convertTdClass( td.tdTagClass , d[td.row],td.row) }}">{{convert(d[td.row],td.row)}}</div>              
+                    {{ !td.tdTag ? convert(d[td.row],td.row) : ''}}
+                </td>
+            </tr>
+        </tbody>
+        <ng-template #noResults>
+            <tbody *ngIf="data" >
+                <tr>
+                    <td class="text-center" [colSpan]="header.length"> No results </td>
+                </tr>
+            </tbody>
+        </ng-template>
+    </table>
+    <hr>
+
+    <div *ngIf="buttonActions.length>0" class="btn-group float-left"  role="group" aria-label="Basic example">
+        <button 
+            *ngFor      ="let button of buttonActions" 
+            class       ="btn {{button.class}}" 
+            (click)     ="!button.toogle ? button.click($event , multiple ? dataMultiple : dataSingle ):null" 
+            attr.data-target ="{{button.target}}"
+            attr.data-toggle ="{{button.toogle}}"
+            [disabled]    ="buttonDisabled(button.type)"
+            >
+            <app-loading-btn 
+                [load]  ="button.loading" 
+                btnIcon ="{{button.icon}}" 
+                btnText ="{{button.name}}"
+            >
+            </app-loading-btn>            
+        </button>
+    </div>
+    <app-pagination 
+        *ngIf="powerPaginate && paginate !=null "
+        [paginate]          =   "paginate" 
+        [onClickNext]       =   "onClickNext"
+        [onClickPreview]    =   "onClickPreview"
+        [onClickPage]       =   "onClickPage"  
+    >
+    </app-pagination>
+</div>

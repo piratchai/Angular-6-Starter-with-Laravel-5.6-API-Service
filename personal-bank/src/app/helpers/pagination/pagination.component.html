@@ -1,0 +1,13 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+        <li class="page-item {{disabledPreviewClass()}}">
+            <a class="page-link" (click)="handlerClickPreview()" tabindex="-1">{{previewText}}</a>
+        </li>
+            <li *ngFor="let page of linkPageNumber()" class="page-item {{activePageClass(page)}}">
+                <a class="page-link " (click)="handlerClickPage(page)">{{page}}</a>
+            </li>
+        <li class="page-item {{disabledNextClass()}}">
+            <a class="page-link" (click)="handlerClickNext()" >{{nextText}}</a>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,116 @@
+<p class="notes notes-info">
+    Update the profile personal data
+</p>
+<br/>
+<form (ngSubmit)="updateData($event)" [formGroup]="validate.form" method="POST" #formDir="ngForm"  enctype="multipart/form-data"  class="form-profile" >
+    <div class="form-row">
+        <div class="form-grouo col-md-6">
+            <label class="float-left">First Name</label>
+            <input 
+                formControlName = "name"
+                type            = "text" 
+                id              = "inputName" 
+                name            = "name"
+                class           = "{{classInput('name')}}"  
+                placeholder     = "Name"  
+                [(ngModel)]     = "fieldUserData.name"
+                (keyup)         = "onChange($event)"
+                autofocus 
+            />
+            <div *ngIf="validate.isRequired('name') || validate.messages.name.error"  >
+                <div *ngFor="let messages of  validate.messages.name.message" class="invalid-feedback d-block">
+                    {{messages}}
+                    </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="float-left">Last Name</label>
+            <input 
+                formControlName = "subname"
+                type            = "text" 
+                id              = "inputSubname" 
+                name            = "subname"
+                class           = "{{classInput('subname')}}" 
+                placeholder     = "Subname"  
+                [(ngModel)]     = "fieldUserData.subname"
+                (keyup)         = "onChange($event)"
+                autofocus 
+            />
+
+            <div *ngIf="validate.isRequired('subname') || validate.messages.subname.error"  >
+                <div *ngFor="let messages of  validate.messages.subname.message" class="invalid-feedback d-block">
+                    {{messages}}
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label class="float-left">Username</label>
+            <input 
+                formControlName = "username"
+                type            = "text" 
+                id              = "inputUsername" 
+                name            = "username"
+                class           = "{{classInput('username')}}" 
+                placeholder     = "Username"  
+                [(ngModel)]     = "auth.profile.username"
+                (keyup)         = "onChange($event)"
+                autofocus
+                readonly 
+            />
+
+            <div *ngIf="validate.isRequired('username') || validate.messages.username.error"  >
+                <div *ngFor="let messages of  validate.messages.username.message" class="invalid-feedback d-block">
+                    {{messages}}
+                    </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="float-left">E-Mail</label>
+            <input 
+                formControlName = "email"
+                type            = "text" 
+                id              = "inputEmail" 
+                name            = "email"
+                class           = "{{classInput('email')}}"   
+                placeholder     = "Email"  
+                [(ngModel)]     = "fieldUserData.email"
+                (keyup)         = "onChange($event)"
+                autofocus 
+            />
+
+            <div *ngIf="validate.isRequired('email') || validate.messages.email.error"  >
+                <div *ngFor="let messages of  validate.messages.email.message" class="invalid-feedback d-block">
+                    {{messages}}
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-12">
+            <div class="btn-group float-right">    
+                <button 
+                    type    ="button" 
+                    (click) ="rollbackFieldUserData($event)" 
+                    class   ="btn text-white btn-sm btn-info {{makeChanges==false?'disabled':''}}">
+                        <i class="fas fa-sync-alt"></i> Cancel Modifications
+                </button>
+                
+                <button class="btn btn-sm btn-success btn-block {{auth.loadUpdateProfile == true ? 'disabled':'' }} " type="submit" >
+                        <app-loading-btn 
+                            [load]  ="auth.loadUpdateProfile" 
+                            btnIcon ="fa fa-save" 
+                            btnText ="Update"
+                        >
+                        </app-loading-btn>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+<p class="notes notes-danger">
+   Note : The username could't be changed.
+</p>
+<br/>         

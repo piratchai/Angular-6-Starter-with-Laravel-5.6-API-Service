@@ -1,0 +1,20 @@
+
+<div class="search-content" *ngIf="kind=='suggestion'">
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" nsme='search'  [ngModelOptions]="{standalone: true}" type="search" placeholder="Search,Account,Transaction" aria-label="Search" [(ngModel)]="value" (keyup) ="onNgSearch($event)">
+    </form>
+    <div *ngIf="state=='active'"  class="search absolute">
+        <ul  class="list-group">
+            <li  [@listState]="state" (click)="onNgGoToItem(component)" class="list-group-item" *ngFor="let component of data;index as i;" >
+                {{component.title}} 
+                <span class="badge badge-success badge-pill float-right">{{component.type}}</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div *ngIf="kind=='list'" class="search relative">
+
+</div>
+    
+

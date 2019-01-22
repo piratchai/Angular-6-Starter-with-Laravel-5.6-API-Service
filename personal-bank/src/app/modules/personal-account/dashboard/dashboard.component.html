@@ -1,0 +1,101 @@
+<div class="container" style="margin-top: 64px;">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card text-center">
+                <ng-template  #progresload>
+                        <div class="loader absolute"></div>
+                </ng-template>
+                <div class="card-header">
+                    Last Activity On Account
+                </div>
+                <div *ngIf="!ds.loadAccount;else progresload" >
+                    <div *ngIf="ds.last_activity_on_account;else noAccount"  class="card-body">
+                        <h5 class="card-title">{{ds.last_activity_on_account.iban}}</h5>
+                        <p class="card-text">
+                            Balance 
+                            <span class="badge badge-info">
+                                {{ds.last_activity_on_account.balance}} {{ds.last_activity_on_account.type}}
+                            </span>
+                        </p>
+                        <a routerLink="/dashboard/accounts/{{ds.last_activity_on_account.id}}" href="#" class="btn btn-success">Go To Account</a>
+                    </div>
+
+                    <ng-template #noAccount>
+                        <div  class="card-body">
+                            <h5>No account</h5>
+                        </div>
+                    </ng-template>
+
+                    <div *ngIf="ds.last_activity_on_account.length > 0" class="card-footer text-muted">
+                        {{Data.format(ds.last_activity_on_account.updated_at,'dd/mm/yyyy')}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+                <div class="card text-center">
+                    <ng-template  #progresloadtow>
+                            <div class="loader absolute"></div>
+                    </ng-template>
+                    <div class="card-header">
+                        Last Transactions
+                    </div>
+                    <div *ngIf="!ds.loadAccount;else progresload" >
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li style="cursor: pointer;" routerLink="/dashboard/accounts/{{transaction.account_id}}/transactions/{{transaction.id}}" *ngFor="let transaction of ds.last_transactions" class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="badge {{spanClass(transaction.state)}} badge-pill">{{lk_status_transaction[transaction.state]}}</span>
+                                    {{transaction.title}}
+                                    <span class="badge badge-info badge-pill">{{transaction.ammount}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <br/>
+    <div class="row"> 
+        <div class="col-md-12">
+            <ng-template  #progresloadthree>
+                    <div class="loader absolute"></div>
+            </ng-template>
+            <div *ngIf="!ds.loadActivities;else progresloadthree">
+                <div class="card border-primary mb-3" *ngFor="let activity of ds.last_ativities" >
+                    <div class="card-header bg-info text-white">
+                        Type: {{activity.type}}
+                    </div>
+                    <div class="card-body text-primary">
+                        <h5 class="card-title"> State : <span class="badge {{spanClass(activity.state)}} badge-pill">{{lk_status_activity[activity.state]}}</span></h5>
+                        <p class="card-text">{{activity.title}}</p>
+                        <p class="text-right">
+                            <button (click)="activitySelect(activity)" data-target="#openActivity" data-toggle="modal" class="btn btn-sm btn-dark"> <i class="fas fa-eye"></i> View </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade in" id="openActivity" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Activity</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <p> {{lastActivity.title}} </p>
+                        <p> Type <span class="badge bg-info text-white">{{lk_activity_type[lastActivity.type]}}</span> </p>
+                        <p> Created {{ date.format( lastActivity.created_at,'dd/mm/yyyy') }} </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-dark" data-dismiss="modal" > <i class="fas fa-times"></i> Close </button>
+                    <button *ngIf="lastActivity.type != 'transaction'" data-dismiss="modal" (click)="general.redirectActivityToAccount(lastActivity.owner_id,lastActivity.type)" class="btn btn-sm btn-info" > <i class="fas fa-eye"></i> Go to {{lastActivity.type}} </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,49 @@
+
+<div class="card">
+    <div class="card-header" >
+        Filters
+        <button (click)="collapseCard()" data-toggle="collapse" data-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters" class="btn float-right btn-sm"><i class="fas {{arrow_collapse}}" > </i></button>
+    </div>
+    <div  class="collapse" id="collapseFilters">
+        <div class="card-body">
+            <div class="row">
+                <div *ngFor="let element of data" class="{{element.class_div}}">
+                    <div class="form-group">
+                        <label>{{element.label}}</label>
+                        <input 
+                            placeholder =   "{{element.label}}" 
+                            *ngIf       =   "element.kind=='input'" 
+                            class       =   "{{element.class_input}}" 
+                            type        =   "{{element.type}}" 
+                            [(ngModel)] =   "model[element.name]" 
+                            [name]      =   "element.name" 
+                            [attr.name] =   "element.name"
+                            (keyup)     =   "onNgChange($event)"
+                        />
+                        <select
+                            *ngIf       =   "element.kind=='select'" 
+                            class       =   "{{element.class_input}}" 
+                            [attr.name] =   "element.name"  
+                            [name]      =   "element.name"
+                            [(ngModel)] =   "model[element.name]" 
+                            (change)    =   "onNgChange($event)">
+                            <option value="">Select</option>
+                            <option *ngFor="let opt of element.options;index as i;" [value]="opt.value">{{opt.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group float-right">
+                        <button *ngIf="clean==true" class="btn btn-sm btn-warning" (click)="onNgClear()">Clear</button>
+                        <button class="btn btn-sm btn-success" (click)="onNgSubmit($event)">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>

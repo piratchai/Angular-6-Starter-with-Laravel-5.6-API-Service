@@ -1,0 +1,42 @@
+<form (ngSubmit)="upload($event)" method="POST" enctype="multipart/form-data">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                    <div class="col-md-12">
+                        <p class="notes notes-info">
+                            Update the avatar picture.
+                        </p>
+                        <br/>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-row">
+                            <div class="form-group  col-md-6">
+                                <input class="form-control text-left btn btn-sm btn-info"  name="avatar"   type="file" (change) = "onFileSelected($event)"  />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="preview-div" *ngIf="preview !=null">
+                            <img src="{{preview}}" class="preview-img" />
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group float-right">
+                        <button type="submit" class="btn btn-success btn-sm"  >
+                            <app-loading-btn 
+                                [load]  ="auth.loadUpdateAvatarProfile" 
+                                btnIcon ="fa fa-save" 
+                                btnText ="Save"
+                            >
+                            </app-loading-btn>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

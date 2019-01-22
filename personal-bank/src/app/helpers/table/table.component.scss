@@ -1,0 +1,11 @@
+table{
+    tr{
+        cursor: pointer;
+        &.selected {
+            td{
+                background: #607D8B;
+                color: white;
+            }
+        }
+    }
+}

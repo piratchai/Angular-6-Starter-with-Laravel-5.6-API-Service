@@ -1,0 +1,18 @@
+#!/usr/bin/php
+
+<?php 
+
+//require __DIR__.'/vendor/autoload.php';
+
+$_config =[
+    '_server_name'      =>'nginx',
+    '_extension'        =>'.local.conf', 
+    '_server_dir'       =>[
+        'nginx'=>'/etc/nginx/sites-enabled/'
+    ],
+    '_data_dir'         =>'_data/',
+    '_conf_name'        =>'api-mat-bank-engine',
+    '_conf_server_name' =>'api-mat-bank-engine'
+];
+
+include 'automise_nginx_conf.php';

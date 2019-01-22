@@ -1,0 +1,61 @@
+<div class="container">
+    <form [formGroup]="validate.form"  #formDir="ngForm"  class="form-signin">
+
+        <div class="text-center mb-4">
+            <i style="font-size: 91px;" class="fab fa-adn"></i>
+            <h1 class="h3 mb-3 font-weight-normal">Welcome to login page</h1>
+            <p>
+              We goes to  use the laravel api authenticate and after success we get back the  <code>:token</code>
+            </p>
+            <p>
+                <a class="nav-link" routerLink="/"> <i class="fas fa-arrow-left"></i> Back to home</a>
+            </p>
+        </div>
+
+        <div class="form-group">
+            <input 
+                formControlName = "username"
+                type            = "text" 
+                id              = "inputUsername" 
+                name            = "username"
+                class           = " form-control {{validate.classError('username')}}"  
+                placeholder     = "Username"  
+                (NgModel)       = "credentials.username"
+                (keyup)         = "onChange($event)"
+                autofocus 
+            />
+
+            <div *ngIf="validate.isRequired('username') || validate.messages.username.error"  >
+                <div *ngFor="let messages of  validate.messages.username.message" class="invalid-feedback d-block">
+                    {{messages}}
+                 </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <input
+                formControlName = "password"
+                type            = "password" 
+                id              = "inputPassword" 
+                name            = "password"
+                class           = "form-control {{validate.classError('password')}}"  
+                placeholder     = "Password"  
+                (NgModel)       = "credentials.password"
+                (keyup)         = "onChange($event)"
+                autofocus 
+            >
+            <div *ngIf="validate.isRequired('password') || validate.messages.password.error"  >
+                <div *ngFor="let messages of  validate.messages.password.message" class="invalid-feedback d-block">
+                    {{messages}}
+                 </div>
+            </div>
+        </div>
+  
+        <button class="btn btn-lg btn-primary btn-block {{loading == true ? 'disabled':'' }}" type="button" (click)="login()"  > <i class="fas fa-sign-in-alt"></i> {{btntext}}</button>
+        <a class="btn btn-lg btn-success btn-block" routerLink="/singup"> <i class="fas fa-user-plus"></i> Sing Up</a>
+       
+      </form>
+      <app-footer></app-footer>
+</div>
+<app-messages></app-messages>

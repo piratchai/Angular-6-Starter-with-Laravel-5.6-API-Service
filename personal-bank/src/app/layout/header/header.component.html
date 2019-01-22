@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" style="margin-bottom: 15px">
+    <a routerLink="/" class="navbar-brand"><i  class="fab fa-adn" style="font-size: 24px;"></i></a>
+    <app-search [data]="search.data" [onSearch] = "onSearch" [onGoToItem]="onGoToItem"></app-search>
+    <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/"> <i class="fas fa-home"></i>  Home</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard/home"> <i class="fas fa-tachometer-alt"></i>  Dashboard</a>
+      </li>
+
+      <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard/accounts" href="#"><i class="fas fa-box"></i> Accounts</a>
+      </li>
+
+      <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard/activities" href="#"><i class="fas fa-globe"></i> Activities</a>
+      </li>
+    </ul>
+    
+    <ul class="navbar-nav float-right">
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard/user/profile">
+                <i class="fas fa-user"></i>  Welcome {{auth.user.name}}   {{auth.user.subname}}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </li>
+    </ul>
+    
+</nav>

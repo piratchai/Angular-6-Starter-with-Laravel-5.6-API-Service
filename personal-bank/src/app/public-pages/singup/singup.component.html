@@ -1,0 +1,134 @@
+<div class="container">
+    <form [formGroup]="validate.form"  #formDir="ngForm"  class="form-singup">
+
+        <div class="text-center mb-4">
+            <i style="font-size: 91px;" class="fab fa-adn"></i>
+            <h1 class="h3 mb-3 font-weight-normal">Welcome to SingUp page</h1>
+            <p>
+                <a class="nav-link" routerLink="/"> <i class="fas fa-arrow-left"></i> Back to home</a>
+            </p>
+        </div>
+
+        <div class="form-group">
+            <input 
+                formControlName = "name"
+                type            = "text" 
+                id              = "inputName" 
+                name            = "name"
+                class           = " form-control {{validate.classError('name')}}"  
+                placeholder     = "Name"  
+                (NgModel)       = "data.name"
+                (keyup)         = "onChange($event)"
+                autofocus 
+            />
+
+            <div *ngIf="validate.isRequired('name') || validate.messages.name.error"  >
+                <div *ngFor="let messages of  validate.messages.name.message" class="invalid-feedback d-block">
+                    {{messages}}
+                 </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input 
+                formControlName = "subname"
+                type            = "text" 
+                id              = "inputSubname" 
+                name            = "subname"
+                class           = " form-control {{validate.classError('subname')}}"  
+                placeholder     = "Subname"  
+                (NgModel)       = "data.subname"
+                (keyup)         = "onChange($event)"
+                autofocus 
+            />
+
+            <div *ngIf="validate.isRequired('subname') || validate.messages.subname.error"  >
+                <div *ngFor="let messages of  validate.messages.subname.message" class="invalid-feedback d-block">
+                    {{messages}}
+                 </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input 
+                formControlName = "username"
+                type            = "text" 
+                id              = "inputUsername" 
+                name            = "username"
+                class           = " form-control {{validate.classError('username')}}"  
+                placeholder     = "Username"  
+                (NgModel)       = "data.username"
+                (keyup)         = "onChange($event)"
+                autofocus 
+            />
+
+            <div *ngIf="validate.isRequired('username') || validate.messages.username.error"  >
+                <div *ngFor="let messages of  validate.messages.username.message" class="invalid-feedback d-block">
+                    {{messages}}
+                 </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input 
+                formControlName = "email"
+                type            = "text" 
+                id              = "inputEmail" 
+                name            = "email"
+                class           = "form-control {{validate.classError('email')}}"  
+                placeholder     = "Email"  
+                (NgModel)       = "data.email"
+                (keyup)         = "onChange($event)"
+                autofocus 
+            />
+
+            <div *ngIf="validate.isRequired('email') || validate.messages.email.error"  >
+                <div *ngFor="let messages of  validate.messages.email.message" class="invalid-feedback d-block">
+                    {{messages}}
+                 </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input
+                formControlName = "password"
+                type            = "password" 
+                id              = "inputPassword" 
+                name            = "password"
+                class           = "form-control {{validate.classError('password')}}"  
+                placeholder     = "Password"  
+                (NgModel)       = "data.password"
+                (keyup)         = "onChange($event)"
+                autofocus 
+            >
+            <div *ngIf="validate.isRequired('password') || validate.messages.password.error"  >
+                <div *ngFor="let messages of  validate.messages.password.message" class="invalid-feedback d-block">
+                    {{messages}}
+                 </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input
+                formControlName = "password_confirmation"
+                type            = "password" 
+                id              = "inputPasswordC" 
+                name            = "password_confirmation"
+                class           = "form-control {{validate.classError('password_confirmation')}}"  
+                placeholder     = "Confirm Password"  
+                (NgModel)       = "data.password_confirmation"
+                (keyup)         = "onChange($event)"
+                autofocus 
+            >
+            <div *ngIf="validate.isRequired('password_confirmation') || validate.messages.password_confirmation.error"  >
+                <div *ngFor="let messages of  validate.messages.password_confirmation.message" class="invalid-feedback d-block">
+                    {{messages}}
+                 </div>
+            </div>
+        </div>
+  
+        <button class="btn btn-lg btn-primary btn-block {{loading == true ? 'disabled':'' }}" type="button" (click)="singUp($event)"  >{{btntext}}</button>
+        <a class="btn btn-lg btn-success btn-block" routerLink="/login">Login</a>
+        <app-footer></app-footer>
+      </form>
+</div>
+<app-messages></app-messages>

@@ -1,0 +1,105 @@
+
+<div class="jumbotron jumbotron-fluid" style="margin-top:50px; ">
+    <div class="container">
+      <h1>Angular 6 and Laravel 5.6  </h1>      
+      <p>This project is a starter for creating interface with <code> Angular </code> using  <code>bootstrap  && css && sass </code> and using <code>Laravel 5.6 </code> for api requests.</p>
+    </div>
+</div>
+
+  
+<div class="container" style="margin-top:80px">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="notes notes-info">
+                <h3>Installation</h3>
+                <p>This project is divided in two parts (projects) and before use them you should follow the instructions below:</p>
+                <h5><i class="fab fa-angular"></i> Angular Project Interface</h5>
+                <p>
+                    <i class="fa fa-map-pin"></i> Local Environment<br>
+                    <code>
+                        > git clone https://github.com/kleviscipi/personal-bank.git <br/>
+                        > cd personal-bank <br />
+                        > npm install <br />
+                        > ng serve <br />
+                    </code>
+                </p>
+                <p>
+                    Production Environment<br>
+                    For production mode you must build the project with command <code>> ng build ---prod</code> and upload the folder <code>dist/personal-bank</code> where you want.<br>
+                    If you want to upload and host on firebase use this instructions:<br/>
+                    <code>
+                        > ng build ---prod <br />
+                        > npm install -g firebase-tools <br>
+                        > firebase init    # Generate a firebase.json (REQUIRED) <br>
+                        > firebase deploy   # Start development server <br>
+                    </code>
+                    <br>
+                    Note : If you are unfamiliar with firebase please go to the <a href="https://firebase.google.com/docs/web/setup">documentation</a>
+                </p>
+                <p>
+                    Further help<br>
+                    To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+                </p>
+                <h5><i class="fab fa-laravel"></i> Laravel Project Api</h5>
+                <p>
+                    <i class="fa fa-map-pin"></i> Local Environment <br>
+                    <code>
+                        > git clone https://github.com/kleviscipi/laravel-api-engine.git <br/>
+                        > cd laravel-api-engine <br />
+                        > composer install <br />
+                    </code><br/>
+                    <code>
+                        #Now you must configure the environment file <code>.env</code> se the example file on project <code>.env.example</code> and don't forget to configure the variables for email.<br>
+                        > php artisan migrate   # This will migrate and save all tables of database. see: <i>database/migrations</i> <br />
+                        > php artisan serve     # This start , Laravel development server at: <i>http://127.0.0.1:800</i>
+                    </code>
+                    <br>
+                    Note: If you have problem with passport api use this instructions <br>
+                    <code>
+                        > php artisan passport:install <br />
+                        > php artisan passport:keys <br />
+                    </code>
+                </p>
+                <p>
+                    <i class="fa fa-map-pin"></i> Production Environment <br>
+                    After you have upload files on your production env you must create and configure the environment file <code>.env</code>
+                    
+                    If you want to upload the Laravel Project Api on <a href="https://www.heroku.com/">https://www.heroku.com/</a> you should before install the heroku cli go to this link : <a href="https://devcenter.heroku.com/articles/heroku-cli">Heroku Cli Dev Center</a> 
+                    <br>
+                    After you have installed that : <br>
+                    <code>
+                        > heroku login <br>
+                        > git init <br>
+                        > heroku git:remote -a you-app-name # This command connect your api created on your Heroku dashboard. <br>
+                        > git add . <br>
+                        > git commit -am "make it better"<br>
+                        > git push heroku master  # Push all files on your app
+                        > heroku config:set APP_KEY=…  # This command set  variables of your environment on heroku app and so on.... Like .env
+                    </code>
+                    <br/>
+                    Note: On Production mode don't forget to configure the variables for your email server. <code>MAIL_DRIVER,MAIL_HOST,MAIL_PORT,MAIL_USERNAME,MAIL_PASSWORD,MAIL_ENCRYPTION</code><br>
+                    After registration you receive an active link email which active the account.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="notes notes-success">
+                <h3>Architecture and Requrements</h3>
+                <p>
+                    See : <a href="https://trello.com/b/p9m8lTvO/peronal-bank-with-angular-e-laravel">https://trello.com/b/p9m8lTvO/peronal-bank-with-angular-e-laravel</a>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="notes notes-danger">
+                <h3>For You:</h3>
+                <p>
+                    You can modify those project how you want and you are welcome for any suggestion or questions.<br />
+                    <b>Note: <i>Do not block yourself for any reason,just code something new and do it well.</i></b>
+                </p>
+                <p><i>Thank you</i></p>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

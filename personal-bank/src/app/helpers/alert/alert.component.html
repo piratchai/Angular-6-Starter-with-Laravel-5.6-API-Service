@@ -1,0 +1,36 @@
+
+<div class="modal fade" id="alert-{{modal_id}}" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="exampleModalLabel">{{header_text}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="notes notes-danger">{{warning_text}}</div>
+                </div>
+                <div class="modal-footer">
+                    <button 
+                        (click) =   "onClose" 
+                        type        ="button" 
+                        class       ="btn btn-dark btn-sm" 
+                        data-dismiss="modal">
+                            <i class="fas fa-thumbs-down"></i>
+                            {{btn_cancel_text}}
+                    </button>
+                    <button 
+                        (click) =   "onConfirm($event)" 
+                        type    =   "button" 
+                        class   =   "btn btn-danger btn-sm" >
+                            <app-loading-btn 
+                                [load]  =   "loading" 
+                                btnIcon =   "fa-thumbs-up" 
+                                btnText =   "{{btn_confirm_text}}">
+                            </app-loading-btn>
+                    </button>
+                </div>
+            </div>
+        </div>
+</div>

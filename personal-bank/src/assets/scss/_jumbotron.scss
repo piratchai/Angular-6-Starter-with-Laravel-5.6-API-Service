@@ -1,0 +1,10 @@
+
+@mixin jumbotron {
+    @for $i from 1 through  $columns_m_top {
+        $line:#{$i}#{0};
+        &.m-top-#{$line} {
+            margin-top : #{$line}px; 
+        }
+    }
+}
+@include jumbotron;

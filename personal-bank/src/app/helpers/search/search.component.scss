@@ -1,0 +1,23 @@
+.search-content{
+    position: relative;
+    input{
+        min-width: 221px;
+    }
+    .list-group-item{
+        cursor: pointer;
+        padding-left: 7px;
+        font-size: 13px;
+    }
+    .search {
+        &.absolute{
+            top: 38px;
+            right: 3px;
+            position: absolute;
+            width: 100%;
+        }
+        &.relative{
+            position: relative;
+        }
+    }
+}
+
